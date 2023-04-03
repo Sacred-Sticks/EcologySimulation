@@ -6,11 +6,12 @@ public class Plant : Organism
     [SerializeField] private FloatReference hydrationRange;
     [SerializeField] private FloatReference reproductionRange;
     
-    protected float HydrationRange { get; private set; }
-    protected float ReproductionRange { get; private set; }
+    protected float HydrationRange { get; set; }
+    protected float ReproductionRange { get; set; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         HydrationRange = hydrationRange.Value;
         ReproductionRange = reproductionRange.Value;
     }

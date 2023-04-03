@@ -8,22 +8,28 @@ public class Animal : Organism
     [SerializeField] private FloatReference visionAngle;
     [SerializeField] private FloatReference aggression;
     [SerializeField] private Vector2Reference sleepingHours;
-    [SerializeField] private EnumeratedObject[] prey;
+    [SerializeField] protected EnumeratedObject[] prey;
+    [SerializeField] protected SexualCharacteristics sex;
     
-    protected float ReproductionDesire { get; private set; }
-    protected float VisionDistance { get; private set; }
-    protected float VisionAngle { get; private set; }
-    protected float Aggression { get; private set; }
-    protected Vector2 SleepingHours { get; private set; }
-    protected EnumeratedObject[] Prey { get; private set; }
+    protected float ReproductionDesire { get; set; }
+    protected float VisionDistance { get; set; }
+    protected float VisionAngle { get; set; }
+    protected float Aggression { get; set; }
+    protected Vector2 SleepingHours { get; set; }
 
-    private void Awake()
+    protected enum SexualCharacteristics
     {
+        Male,
+        Female,
+    }
+
+    protected override void Awake()
+    {
+        base.Awake();
         ReproductionDesire = reproductionDesire.Value;
         VisionDistance = visionDistance.Value;
         VisionAngle = visionAngle.Value;
         Aggression = aggression.Value;
         SleepingHours = sleepingHours.Value;
-        Prey = prey;
     }
 }
