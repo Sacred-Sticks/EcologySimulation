@@ -8,11 +8,4 @@ public class Plant : Organism
     
     protected float HydrationRange { get; set; }
     protected float ReproductionRange { get; set; }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        HydrationRange = hydrationRange.Value;
-        ReproductionRange = reproductionRange.Value;
-    }
 }
