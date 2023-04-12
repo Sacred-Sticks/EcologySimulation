@@ -9,6 +9,7 @@
 | Producers | Plants (grass, trees, etc.) |
 
 ## Food Web Table
+
 | Organism | Eats |
 |---|---|
 | Plants (grass, trees, etc.) | N/A |
@@ -16,6 +17,7 @@
 | Red Fox | Eastern Cottontail |
 
 ## Description of Organisms
+
 - Shrubs and Grass: these plants are pruducers, as the produce their own food through photosynthesis. They will likely be everywhere where there is soil and sunlight.
 - Trees: These plants are also producers. Their high leaves will shade large areas, limiting the populations of other organisms that rely on photosynthesis. They pruduce seeds and/or fruits that can feed herbivores. We may choose to implement this as a feature of the simulation, or just leave it implied.
 - [Eastern Cottontail](https://animalia.bio/eastern-cottontail#description): A small, solitary herbivore that eats all kinds of plants. They usually have a length of 36 - 48 centimeters. Eastern cottontails usually move only short distances, and they may remain sitting very still for up to 15 minutes at a time. When chased, they run in a zigzag pattern, reaching up to 18 mph (29 km/h).
