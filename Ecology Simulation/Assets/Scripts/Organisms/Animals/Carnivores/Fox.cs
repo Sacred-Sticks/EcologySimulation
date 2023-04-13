@@ -2,7 +2,9 @@ using System;
 using System.Linq;
 using Essentials.References;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(Move))]
 public class Fox : Carnivore
 {
     [SerializeField] private FloatReference idle;
@@ -16,6 +18,15 @@ public class Fox : Carnivore
     }
 
     private State state;
+
+    private Move mover;
+    private Vector3 targetPosition;
+    private const float TOLERANCE = 0.1f;
+
+    private void Awake()
+    {
+        mover = GetComponent<Move>();
+    }
 
     private void Update()
     {
@@ -38,6 +49,11 @@ public class Fox : Carnivore
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }
+    }
+
+    private void FixedUpdate()
+    {
+        Movement();
     }
 
     private void CheckState()
@@ -63,19 +79,31 @@ public class Fox : Carnivore
     private void IdleBehavior()
     {
         // Return if target is not currently reached, then get random direction, set target to the direction * some range
-        
+        if (Vector3.SqrMagnitude(transform.position - targetPosition) > Mathf.Pow(TOLERANCE, 2))
+            return;
+
         var direction = GetRandomDirection();
-        
+        float distance = Random.Range(1f, 5f);
+        targetPosition = transform.position + (direction * distance);
     }
 
     private void SearchForTarget(Target target)
     {
+        if (Vector3.SqrMagnitude(transform.position - targetPosition) > Mathf.Pow(TOLERANCE, 2))
+            return;
         var targetGameObject = SearchForItem(target);
         if (!targetGameObject)
+        {
+            IdleBehavior();
             return;
-        
-        // Now move to the target
-        
-        Debug.Log($"Found at {targetGameObject.transform.position}");
+        }
+
+        targetPosition = targetGameObject.transform.position;
+    }
+
+    private void Movement()
+    {
+        mover.RotateTowardsTarget(targetPosition);
+        mover.MoveToTarget();
     }
 }
