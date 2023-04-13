@@ -76,9 +76,20 @@ public class Animal : Organism
             _ => throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null),
         };
 
-        var results = Physics2D.OverlapCircle(transform.position, VisionDistance, layer);
-        if (results)
-            output = results.gameObject;
+        var results = new List<Collider2D>();
+        Physics2D.OverlapCircle(transform.position, VisionDistance, new ContactFilter2D(), results);
+        float closestDistance = float.PositiveInfinity;
+        foreach (var result in results)
+        {
+            int resultLayer = result.gameObject.layer;
+            if (layer != (layer | (1 << resultLayer)))
+                continue;
+            float distance = Vector3.Distance(transform.position, result.transform.position);
+            if (!(distance < closestDistance))
+                continue;
+            closestDistance = distance;
+            output = result.gameObject;
+        }
 
         return output;
     }

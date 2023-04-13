@@ -42,11 +42,11 @@ public class Organism : MonoBehaviour
         }
     }
 
-    public static Vector2 GetRandomDirection()
+    public static Vector3 GetRandomDirection()
     {
         float x = Random.Range(-1f, 1f);
         float y = Random.Range(-1f, 1f);
-        var direction = new Vector2(x, y).normalized;
+        var direction = new Vector3(x, y, 0).normalized;
         return direction;
     }
 }
