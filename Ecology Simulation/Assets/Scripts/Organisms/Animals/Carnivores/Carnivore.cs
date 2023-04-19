@@ -21,10 +21,9 @@ public class Carnivore : Animal
     
     
         if (this.hungerLevel < 6)
-        {
-          
+        {  
             fox.hunt(); 
-            this.hungerLevel++; 
+      
         }
         
         while(this.hungerLevel == 0){
