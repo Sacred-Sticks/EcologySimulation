@@ -13,6 +13,13 @@ public class Carnivore : Animal
 
     public void Hunger(Fox fox)
     {
+    
+    while(true){
+    
+    hungerLevel--;
+    }
+    
+    
         if (this.hungerLevel < 6)
         {
           
