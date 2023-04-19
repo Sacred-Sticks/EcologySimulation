@@ -11,6 +11,7 @@ public class Animal : Organism
     [SerializeField] private FloatReference aggression;
     [SerializeField] protected LayerMask prey;
     [SerializeField] protected LayerMask water;
+    [SerializeField] protected LayerMask predator;
     [SerializeField] protected SexualCharacteristics sex;
 
     protected float ReproductionDesire
@@ -61,6 +62,7 @@ public class Animal : Organism
     {
         Food,
         Water,
+        Predator,
         Mate,
     }
 
@@ -72,6 +74,7 @@ public class Animal : Organism
         {
             Target.Food => prey,
             Target.Water => water,
+            Target.Predator => predator,
             Target.Mate => gameObject.layer,
             _ => throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null),
         };
