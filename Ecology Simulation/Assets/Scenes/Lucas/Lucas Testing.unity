@@ -664,6 +664,9 @@ GameObject:
   - component: {fileID: 2071092654}
   - component: {fileID: 2071092658}
   - component: {fileID: 2071092657}
+  - component: {fileID: 2071092661}
+  - component: {fileID: 2071092660}
+  - component: {fileID: 2071092659}
   m_Layer: 6
   m_Name: Fox
   m_TagString: Untagged
@@ -683,23 +686,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4d0e5dc9584ef46beea8e2d8a5ea60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sustenance:
-    useConstant: 1
-    constantValue: 1
-    variable: {fileID: 0}
-  hydration:
-    useConstant: 1
-    constantValue: 1
-    variable: {fileID: 0}
-  reproductionCooldown:
-    useConstant: 1
-    constantValue: 1
-    variable: {fileID: 0}
   species: {fileID: 11400000, guid: 7c444df76bcc51b49a5ded082d6f5a22, type: 2}
-  reproductionDesire:
-    useConstant: 1
-    constantValue: 1
-    variable: {fileID: 0}
   visionDistance:
     useConstant: 1
     constantValue: 5
@@ -718,6 +705,9 @@ MonoBehaviour:
   water:
     serializedVersion: 2
     m_Bits: 16
+  predator:
+    serializedVersion: 2
+    m_Bits: 0
   sex: 0
   idle:
     useConstant: 1
@@ -825,3 +815,45 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2071092659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071092653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statLifetime: 60
+  statisticType: 2
+--- !u!114 &2071092660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071092653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statLifetime: 20
+  statisticType: 1
+--- !u!114 &2071092661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071092653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statLifetime: 30
+  statisticType: 0

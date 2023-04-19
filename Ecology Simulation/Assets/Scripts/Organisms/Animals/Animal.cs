@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Animal : Organism
 {
-    [SerializeField] private FloatReference reproductionDesire;
     [SerializeField] private FloatReference visionDistance;
     [SerializeField] private FloatReference visionAngle;
     [SerializeField] private FloatReference aggression;
@@ -14,17 +13,7 @@ public class Animal : Organism
     [SerializeField] protected LayerMask predator;
     [SerializeField] protected SexualCharacteristics sex;
 
-    protected float ReproductionDesire
-    {
-        get
-        {
-            return reproductionDesire.Value;
-        }
-        set
-        {
-            reproductionDesire.Value = value;
-        }
-    }
+    protected Statistic SexualSatisfaction;
     protected float VisionDistance
     {
         get
@@ -101,5 +90,38 @@ public class Animal : Organism
     {
         Male,
         Female,
+    }
+
+    public void SetStatistic(Statistic statistic)
+    {
+        switch (statistic.StatisticType)
+        {
+            case Statistic.StatType.Sustenance:
+                if (Sustenance)
+                {
+                    Debug.LogWarning($"{nameof(Sustenance)} Already Set");
+                    break;
+                }
+                Sustenance = statistic;
+                break;
+            case Statistic.StatType.Hydration:
+                if (Hydration)
+                {
+                    Debug.LogWarning($"{nameof(Hydration)} Already Set");
+                    break;
+                }
+                Hydration = statistic;
+                break;
+            case Statistic.StatType.SexualSatisfaction:
+                if (SexualSatisfaction)
+                {
+                    Debug.LogWarning($"{nameof(SexualSatisfaction)} Already Set");
+                    break;
+                }
+                SexualSatisfaction = statistic;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(statistic), statistic, null);
+        }
     }
 }
