@@ -11,12 +11,16 @@ public class Herbivore : Animal
         this.healthLevel = MAX_HEALTH_LEVEL;
     }
 
-    public void Eat(Rabbit rabbit)
-    {
+    public void Eat(Rabbit rabbit){
+    
+    while(true){
+    hungerLevel--;
+    }
+    
         if (this.hungerLevel >= 6)
         {
             rabbit.Eat(); 
-            this.hungerLevel--; 
+            
         }
         
         while(this.hungerLevel == 0){
