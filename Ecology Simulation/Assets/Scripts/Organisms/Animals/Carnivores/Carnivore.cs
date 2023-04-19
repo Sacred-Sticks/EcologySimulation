@@ -20,10 +20,9 @@ public class Carnivore : Animal
             this.hungerLevel++; 
         }
         
-         if (this.hungerLevel == 0)
-        {
-           
-            this.healthLevel--;
+        while(this.hungerLevel == 0){
+        healthLevel--;
+        
         }
         
         else
