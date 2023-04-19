@@ -1,31 +1,16 @@
-using Essentials.References;
-using Essentials.Variables;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StatBar : MonoBehaviour
 {
-    [SerializeField] private FloatVariable organismStatVariable;
-    [SerializeField] private FloatReference statTimer;
+    [SerializeField] private float statTimer;
     [SerializeField] private Image statBar;
 
     private const int maxStatValue = 1;
 
-    public float organismStat
+    public void LowerStat(ref float organismStat, float multiplier)
     {
-        get
-        {
-            return organismStatVariable.Value;
-        }
-        set
-        {
-            organismStatVariable.Value = value;
-        }
-    }
-    
-    public void LowerStat(float multiplier)
-    {
-        organismStat -= multiplier * statTimer.Value;
+        organismStat -= multiplier * statTimer;
         
         if (organismStat <= 0)
         {
@@ -35,8 +20,8 @@ public class StatBar : MonoBehaviour
         // Modify statBar data for visuals
     }
 
-    public void ResetStat()
+    public float ResetStat()
     {
-        organismStat = maxStatValue;
+        return maxStatValue;
     }
 }
