@@ -11,6 +11,7 @@ public class Animal : Organism
     [SerializeField] private FloatReference aggression;
     [SerializeField] protected LayerMask prey;
     [SerializeField] protected LayerMask water;
+    [SerializeField] protected LayerMask predator;
     [SerializeField] protected SexualCharacteristics sex;
 
     protected float ReproductionDesire
@@ -61,24 +62,46 @@ public class Animal : Organism
     {
         Food,
         Water,
+        Predator,
         Mate,
     }
 
     protected GameObject SearchForItem(Target targetType)
     {
-        GameObject output = null;
-
-        int layer = targetType switch
-        {
-            Target.Food => prey,
-            Target.Water => water,
-            Target.Mate => gameObject.layer,
-            _ => throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null),
-        };
+        int layer = GetLayer(targetType);
 
         var results = new List<Collider2D>();
         Physics2D.OverlapCircle(transform.position, VisionDistance, new ContactFilter2D(), results);
+
+        ReduceByAngle(results, VisionAngle);
+
+        FindClosestGameObject(results, layer, out var output);
+
+        return output;
+    }
+    
+    private void ReduceByAngle(List<Collider2D> targets, float angleOfVision) {
+        var visibleTargets = new List<Collider2D>();
+        var forward = transform.up;
+
+        foreach (var target in targets) {
+            var direction = target.transform.position - transform.position;
+            direction = transform.InverseTransformDirection(direction);
+            float angle = 90 - Vector3.Angle(forward, direction);
+
+            if (angle <= angleOfVision && angle >= -angleOfVision) {
+                visibleTargets.Add(target);
+            }
+        }
+
+        targets.Clear();
+        targets.AddRange(visibleTargets);
+    }
+
+    private void FindClosestGameObject(List<Collider2D> results, int layer, out GameObject output)
+    {
         float closestDistance = float.PositiveInfinity;
+        output = null;
         foreach (var result in results)
         {
             int resultLayer = result.gameObject.layer;
@@ -90,8 +113,25 @@ public class Animal : Organism
             closestDistance = distance;
             output = result.gameObject;
         }
+    }
 
-        return output;
+    private Vector3 RotatePoint(Vector3 point, Vector3 angles) {
+        var direction = point - transform.position;
+        direction = Quaternion.Euler(angles) * direction;
+        point = direction + transform.position;
+        return point;
+    }
+
+    private int GetLayer(Target targetType)
+    {
+        return targetType switch
+        {
+            Target.Food => prey,
+            Target.Water => water,
+            Target.Predator => predator,
+            Target.Mate => gameObject.layer,
+            _ => throw new ArgumentOutOfRangeException(nameof(targetType), targetType, null),
+        };
     }
 
     protected enum SexualCharacteristics

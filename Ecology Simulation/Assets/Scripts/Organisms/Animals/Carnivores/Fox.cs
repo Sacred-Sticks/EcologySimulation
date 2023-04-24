@@ -28,6 +28,11 @@ public class Fox : Carnivore
         mover = GetComponent<Move>();
     }
 
+    private void Start()
+    {
+        targetPosition = transform.position;
+    }
+
     private void Update()
     {
         CheckState();
