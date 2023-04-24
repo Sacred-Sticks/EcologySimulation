@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
@@ -25,4 +27,31 @@ public class Move : MonoBehaviour
         Quaternion q = Quaternion.Euler(new Vector3(0, 0, angle));
         transform.localRotation = Quaternion.Slerp(transform.localRotation, q, rotateSpeed);
     }
+    
+    
+    void Anchor()
+    {
+    Vector3 statBarPosition = canvasTransform.localPosition;
+    statBarPosition.z = 0; // Make sure the stat bar stays in the same plane as the canvas
+    statBar.transform.localPosition = statBarPosition;
+    }
+
+    // We will be sending the target into this script externally from other script when we call these public methods
+    // private void GetTarget()
+    // {
+    //     if (GameObject.FindGameObjectWithTag("prey"))
+    //     {
+    //         target = GameObject.FindGameObjectWithTag("prey").transform;
+    //     }
+    // }
+
+    // We don't want to control eating behavior from the moving script
+    // private void OnCollisionEnter2D(Collision2D other)
+    // {
+    //     if (other.gameObject.CompareTag("prey"))
+    //     {
+    //         Destroy(other.gameObject);
+    //         target = null;
+    //     }
+    // }
 }
