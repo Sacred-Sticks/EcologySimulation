@@ -22,6 +22,7 @@ public class Move : MonoBehaviour
     {
         rb.velocity = transform.up * speed;
     }
+    
 
     public void RotateTowardsTarget(Vector3 target)
     {
@@ -29,6 +30,14 @@ public class Move : MonoBehaviour
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90f;
         Quaternion q = Quaternion.Euler(new Vector3(0, 0, angle));
         transform.localRotation = Quaternion.Slerp(transform.localRotation, q, rotateSpeed);
+    }
+    
+    
+    void Anchor()
+    {
+    Vector3 statBarPosition = canvasTransform.localPosition;
+    statBarPosition.z = 0; // Make sure the stat bar stays in the same plane as the canvas
+    statBar.transform.localPosition = statBarPosition;
     }
 
     // We will be sending the target into this script externally from other script when we call these public methods
