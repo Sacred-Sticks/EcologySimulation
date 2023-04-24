@@ -82,12 +82,12 @@ public class Animal : Organism
     
     private void ReduceByAngle(List<Collider2D> targets, float angleOfVision) {
         var visibleTargets = new List<Collider2D>();
-        var forward = transform.up;
+        var forward = Vector3.up;
 
         foreach (var target in targets) {
             var direction = target.transform.position - transform.position;
             direction = transform.InverseTransformDirection(direction);
-            float angle = 90 - Vector3.Angle(forward, direction);
+            float angle = Vector3.Angle(forward, direction);
 
             if (angle <= angleOfVision && angle >= -angleOfVision) {
                 visibleTargets.Add(target);

@@ -1,8 +1,10 @@
 using System;
 using System.Linq;
+using System.Numerics;
 using Essentials.References;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using Vector3 = UnityEngine.Vector3;
 
 [RequireComponent(typeof(Move))]
 public class Fox : Carnivore
@@ -21,7 +23,7 @@ public class Fox : Carnivore
 
     private Move mover;
     private Vector3 targetPosition;
-    private const float TOLERANCE = 0.1f;
+    private const float TOLERANCE = 0.25f;
 
     private void Awake()
     {
@@ -108,6 +110,8 @@ public class Fox : Carnivore
 
     private void Movement()
     {
+        if (Vector3.SqrMagnitude(targetPosition - transform.position) < 0.025f)
+            return;
         mover.RotateTowardsTarget(targetPosition);
         mover.MoveToTarget();
     }
