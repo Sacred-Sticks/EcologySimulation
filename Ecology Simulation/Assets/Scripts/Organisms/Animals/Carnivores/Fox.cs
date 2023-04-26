@@ -67,9 +67,9 @@ public class Fox : Carnivore
     {
         string nameMinValue = (new[]
         {
-            Tuple.Create(nameof(Sustenance), Sustenance),
-            Tuple.Create(nameof(Hydration), Hydration),
-            Tuple.Create(nameof(ReproductionDesire), ReproductionDesire),
+            Tuple.Create(nameof(Sustenance), Sustenance.Value),
+            Tuple.Create(nameof(Hydration), Hydration.Value),
+            Tuple.Create(nameof(SexualSatisfaction), SexualSatisfaction.Value),
             Tuple.Create(nameof(idle), idle.Value),
         }).OrderByDescending(t => t.Item2).Last().Item1;
 
@@ -77,7 +77,7 @@ public class Fox : Carnivore
         {
             nameof(Sustenance) => State.Hungry,
             nameof(Hydration) => State.Thirsty,
-            nameof(ReproductionDesire) => State.Horny,
+            nameof(SexualSatisfaction) => State.Horny,
             nameof(idle) => State.Idle,
             _ => throw new ArgumentOutOfRangeException(nameof(nameMinValue), nameMinValue, null)
         };
