@@ -310,14 +310,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867577243}
-  m_LocalRotation: {x: -0, y: -0, z: -0.70094293, w: 0.71321744}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 2, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &1128172008
 GameObject:
   m_ObjectHideFlags: 0
@@ -421,14 +421,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1128172008}
-  m_LocalRotation: {x: -0, y: -0, z: -0.70094293, w: 0.71321744}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 3.5, y: 1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &2071092653
 GameObject:
   m_ObjectHideFlags: 0
@@ -439,9 +439,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2071092656}
   - component: {fileID: 2071092655}
-  - component: {fileID: 2071092654}
   - component: {fileID: 2071092658}
+  - component: {fileID: 2071092654}
   - component: {fileID: 2071092657}
+  - component: {fileID: 2071092660}
+  - component: {fileID: 2071092659}
+  - component: {fileID: 2071092661}
+  - component: {fileID: 2071092662}
   m_Layer: 6
   m_Name: Fox
   m_TagString: Untagged
@@ -461,23 +465,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f4d0e5dc9584ef46beea8e2d8a5ea60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sustenance:
-    useConstant: 1
-    constantValue: 0.4
-    variable: {fileID: 0}
-  hydration:
-    useConstant: 1
-    constantValue: 1
-    variable: {fileID: 0}
-  reproductionCooldown:
-    useConstant: 1
-    constantValue: 1
-    variable: {fileID: 0}
   species: {fileID: 11400000, guid: 7c444df76bcc51b49a5ded082d6f5a22, type: 2}
-  reproductionDesire:
-    useConstant: 1
-    constantValue: 1
-    variable: {fileID: 0}
+  Sustenance: {fileID: 2071092659}
+  Hydration: {fileID: 2071092661}
   visionDistance:
     useConstant: 1
     constantValue: 5
@@ -500,6 +490,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   sex: 0
+  SexualSatisfaction: {fileID: 2071092662}
   idle:
     useConstant: 1
     constantValue: 0.75
@@ -563,14 +554,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2071092653}
-  m_LocalRotation: {x: -0, y: -0, z: -0.70094293, w: 0.71321744}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!114 &2071092657
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,6 +597,84 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2071092659
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071092653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statLifetime: 20
+  statisticType: 0
+--- !u!114 &2071092660
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071092653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4497cfef05554aa44a7d21f3ba1e7d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - statistic: {fileID: 2071092659}
+    layers:
+      serializedVersion: 2
+      m_Bits: 128
+    range:
+      useConstant: 1
+      constantValue: 0.125
+      variable: {fileID: 0}
+    onFind:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 2071092660}
+          m_TargetAssemblyTypeName: ResourceDetection, Assembly-CSharp
+          m_MethodName: EatTarget
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &2071092661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071092653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statLifetime: 0
+  statisticType: 1
+--- !u!114 &2071092662
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2071092653}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  statLifetime: 0
+  statisticType: 2
 --- !u!1 &2096192306
 GameObject:
   m_ObjectHideFlags: 0
@@ -709,11 +778,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2096192306}
-  m_LocalRotation: {x: -0, y: -0, z: -0.70094293, w: 0.71321744}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0.5, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}

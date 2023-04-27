@@ -15,7 +15,7 @@ public class Statistic : MonoBehaviour
             return statisticType;
         }
     }
-    
+
     public enum StatType
     {
         Sustenance,
@@ -42,7 +42,10 @@ public class Statistic : MonoBehaviour
     private void Start()
     {
         Value = 1;
-        changePerSecond = 1 / statLifetime;
+        if (statLifetime == 0)
+            changePerSecond = 0;
+        else
+            changePerSecond = 1 / statLifetime;
     }
 
     private void Update()
@@ -53,7 +56,7 @@ public class Statistic : MonoBehaviour
     private void LowerStat()
     {
         AddToStat(-(changePerSecond * Time.deltaTime));
-        
+
         if (Value <= 0)
             Destroy(gameObject);
     }
