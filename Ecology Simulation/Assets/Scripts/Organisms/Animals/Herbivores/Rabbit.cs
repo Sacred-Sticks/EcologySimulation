@@ -7,12 +7,14 @@ using Random = UnityEngine.Random;
 public class Rabbit : Herbivore
 {
     [SerializeField] private FloatReference idle;
+    [SerializeField] private FloatReference run;
 
     private enum State
     {
         Idle,
         Hungry,
         Thirsty,
+        Flee,
         Horny,
     }
 
@@ -27,6 +29,7 @@ public class Rabbit : Herbivore
 
     private void Update()
     {
+    
         CheckState();
         switch (state)
         {
@@ -42,6 +45,9 @@ public class Rabbit : Herbivore
             case State.Horny:
                 SearchForTarget(Target.Mate);
                 break;
+            case State.Flee:
+                SearchForPredator(Target.Predator);
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }  
@@ -53,7 +59,6 @@ public class Rabbit : Herbivore
 
     }
 
-
     private void CheckState()
     {
         string nameMinValue = (new[] 
@@ -62,6 +67,7 @@ public class Rabbit : Herbivore
             Tuple.Create(nameof(Hydration), Hydration),
             Tuple.Create(nameof(ReproductionDesire), ReproductionDesire),
             Tuple.Create(nameof(idle), idle.Value),
+            Tuple.Create(nameof(run), run.Value),
         }).OrderByDescending(t => t.Item2).Last().Item1;
         
         state = nameMinValue switch
@@ -70,6 +76,7 @@ public class Rabbit : Herbivore
             nameof(Hydration) => State.Thirsty,
             nameof(ReproductionDesire) => State.Horny,
             nameof(idle) => State.Idle,
+            nameof(run) => State.Flee,
             _ => throw new ArgumentOutOfRangeException(nameof(nameMinValue), nameMinValue, null)
         };
     }
@@ -93,11 +100,33 @@ public class Rabbit : Herbivore
             IdleBehavior();
             return;
         }
-        targetPosition = targetGameObject.transform.position;
+        var predatorNearby = SearchForItem(Target.Predator);
+        if(!predatorNearby)
+        {
+            targetPosition = targetGameObject.transform.position;
+        }
+        else
+        {
+            SearchForPredator(Target.Predator);
+        }
+    }
+
+    private void SearchForPredator(Target target)
+    {
+        if (Vector3.SqrMagnitude(transform.position - targetPosition) > Mathf.Pow(TOLERANCE, 2))
+            return;
+        var targetGameObject = SearchForItem(target);
+        if(!targetGameObject)
+        {
+            IdleBehavior();
+            return;
+        }
+        targetPosition = targetGameObject.transform.position * -1;
     }
 
     private void Movement()
     {
+        
         mover.RotateTowardsTarget(targetPosition);
         mover.MoveToTarget();
     }
