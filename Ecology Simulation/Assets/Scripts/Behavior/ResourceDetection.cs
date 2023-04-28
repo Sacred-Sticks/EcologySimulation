@@ -68,11 +68,11 @@ public class ResourceDetection : MonoBehaviour
     public Dictionary<Statistic.StatType, Statistic> statistics { get; private set; }
     public Dictionary<Statistic, float> statisticAdditiveValues { get; private set; } 
 
-    private CircleCollider2D objectCollider;
+    private CapsuleCollider2D objectCollider;
     
     private void Awake()
     {
-        objectCollider = GetComponent<CircleCollider2D>();
+        objectCollider = GetComponent<CapsuleCollider2D>();
     }
 
     private void Start()
@@ -85,7 +85,7 @@ public class ResourceDetection : MonoBehaviour
     {
         foreach (var resourceData in data)
         {
-            FindClosest(out var target, resourceData.Layers, resourceData.Range + objectCollider.radius);
+            FindClosest(out var target, resourceData.Layers, resourceData.Range + objectCollider.size.y / 2);
             if (target)
                 resourceData.OnFind?.Invoke(target, resourceData.Statistic);
         }
