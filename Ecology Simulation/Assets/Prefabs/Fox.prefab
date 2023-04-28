@@ -204,6 +204,10 @@ MonoBehaviour:
       useConstant: 1
       constantValue: 0.125
       variable: {fileID: 0}
+    statisticAdditiveValue:
+      useConstant: 1
+      constantValue: 0
+      variable: {fileID: 0}
     onFind:
       m_PersistentCalls:
         m_Calls:
@@ -228,6 +232,10 @@ MonoBehaviour:
       useConstant: 1
       constantValue: 0.125
       variable: {fileID: 0}
+    statisticAdditiveValue:
+      useConstant: 1
+      constantValue: 0
+      variable: {fileID: 0}
     onFind:
       m_PersistentCalls:
         m_Calls:
@@ -250,7 +258,11 @@ MonoBehaviour:
       m_Bits: 64
     range:
       useConstant: 1
-      constantValue: 5
+      constantValue: 10
+      variable: {fileID: 0}
+    statisticAdditiveValue:
+      useConstant: 1
+      constantValue: 0.5
       variable: {fileID: 0}
     onFind:
       m_PersistentCalls:
@@ -280,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statLifetime: 0
+  statLifetime: 20
   statisticType: 0
 --- !u!114 &9189435001140671621
 MonoBehaviour:
@@ -294,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statLifetime: 0
+  statLifetime: 40
   statisticType: 1
 --- !u!114 &9189435001140671622
 MonoBehaviour:

@@ -179,8 +179,28 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9189435001140671620, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
+      propertyPath: data.Array.data[0].range.constantValue
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9189435001140671620, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
+      propertyPath: data.Array.data[1].range.constantValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 9189435001140671620, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
       propertyPath: data.Array.data[2].range.constantValue
-      value: 5
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 9189435001140671620, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
+      propertyPath: data.Array.data[0].statisticAdditiveValue.constantValue
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 9189435001140671620, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
+      propertyPath: data.Array.data[1].statisticAdditiveValue.constantValue
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 9189435001140671620, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
+      propertyPath: data.Array.data[2].statisticAdditiveValue.constantValue
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 9189435001140671621, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
       propertyPath: statLifetime
@@ -668,21 +688,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
-    - target: {fileID: 9189435001140671619, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
-      propertyPath: statLifetime
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 9189435001140671621, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
-      propertyPath: statLifetime
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 9189435001140671645, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
       propertyPath: m_Name
       value: Fox
-      objectReference: {fileID: 0}
-    - target: {fileID: 9189435001140671645, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: deace6085a225fa49bbd1b8efb7b6f59, type: 3}
