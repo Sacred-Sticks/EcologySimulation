@@ -25,6 +25,11 @@ public class Rabbit : Herbivore
         mover = GetComponent<Move>();
     }
 
+    private void Start()
+    {
+        targetPosition = transform.position;
+    }
+
     private void Update()
     {
         CheckState();

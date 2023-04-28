@@ -121,6 +121,8 @@ public class ResourceDetection : MonoBehaviour
         if (statistic.Value > 0.75f)
             return;
         var targetManager = target.GetComponent<ResourceDetection>();
+        if (targetManager.statistics == null)
+            return;
         var targetStatistic = targetManager.statistics[Statistic.StatType.SexualSatisfaction];
         targetManager.statistics[statistic.StatisticType].AddToStat(targetManager.statisticAdditiveValues[targetStatistic]);
         statistic.AddToStat(statisticAdditiveValues[statistic]);

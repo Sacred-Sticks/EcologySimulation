@@ -10,9 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3760627654147668378}
   - component: {fileID: 3760627654147668381}
+  - component: {fileID: 7127297428409219542}
   - component: {fileID: 3760627654147668377}
   - component: {fileID: 3760627654147668376}
   - component: {fileID: 3760627654147668379}
+  - component: {fileID: 5308992563879308225}
   - component: {fileID: 7334219909686219772}
   - component: {fileID: 5215521663851174376}
   - component: {fileID: 6542478026795273100}
@@ -30,14 +32,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3760627654147668382}
-  m_LocalRotation: {x: -0, y: -0, z: -0.70094293, w: 0.71321744}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5, y: 1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -89.005}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3760627654147668381
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -79,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1cced0b8d0cfbad448f6cd526612d6ac, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -90,6 +92,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!58 &7127297428409219542
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3760627654147668382}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.4}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!50 &3760627654147668377
 Rigidbody2D:
   serializedVersion: 4
@@ -164,6 +182,104 @@ MonoBehaviour:
     useConstant: 1
     constantValue: 0.75
     variable: {fileID: 0}
+--- !u!114 &5308992563879308225
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3760627654147668382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4497cfef05554aa44a7d21f3ba1e7d28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: 0
+    statistic: {fileID: 7334219909686219772}
+    layers:
+      serializedVersion: 2
+      m_Bits: 256
+    range:
+      useConstant: 1
+      constantValue: 0.25
+      variable: {fileID: 0}
+    statisticAdditiveValue:
+      useConstant: 1
+      constantValue: 0.5
+      variable: {fileID: 0}
+    onFind:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5308992563879308225}
+          m_TargetAssemblyTypeName: ResourceDetection, Assembly-CSharp
+          m_MethodName: EatTarget
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - key: 1
+    statistic: {fileID: 5215521663851174376}
+    layers:
+      serializedVersion: 2
+      m_Bits: 16
+    range:
+      useConstant: 1
+      constantValue: 0.125
+      variable: {fileID: 0}
+    statisticAdditiveValue:
+      useConstant: 1
+      constantValue: 0.5
+      variable: {fileID: 0}
+    onFind:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5308992563879308225}
+          m_TargetAssemblyTypeName: ResourceDetection, Assembly-CSharp
+          m_MethodName: DrinkWater
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - key: 2
+    statistic: {fileID: 6542478026795273100}
+    layers:
+      serializedVersion: 2
+      m_Bits: 128
+    range:
+      useConstant: 1
+      constantValue: 5
+      variable: {fileID: 0}
+    statisticAdditiveValue:
+      useConstant: 1
+      constantValue: 0.5
+      variable: {fileID: 0}
+    onFind:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5308992563879308225}
+          m_TargetAssemblyTypeName: ResourceDetection, Assembly-CSharp
+          m_MethodName: Mate
+          m_Mode: 0
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  speciesPrefab: {fileID: 3760627654147668382}
 --- !u!114 &7334219909686219772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,7 +292,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statLifetime: 15
+  statLifetime: 20
   statisticType: 0
 --- !u!114 &5215521663851174376
 MonoBehaviour:
@@ -190,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statLifetime: 10
+  statLifetime: 15
   statisticType: 1
 --- !u!114 &6542478026795273100
 MonoBehaviour:
@@ -204,5 +320,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: caf8a4a08650a604cb424363ad946ccb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  statLifetime: 40
+  statLifetime: 15
   statisticType: 2
