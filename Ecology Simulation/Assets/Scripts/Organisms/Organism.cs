@@ -5,8 +5,8 @@ public class Organism : MonoBehaviour
 {
     [SerializeField] protected EnumeratedObject species;
 
-    [SerializeField] protected Statistic Sustenance;
-    [SerializeField] protected Statistic Hydration;
+    protected Statistic Sustenance;
+    protected Statistic Hydration;
 
     public static Vector3 GetRandomDirection()
     {
