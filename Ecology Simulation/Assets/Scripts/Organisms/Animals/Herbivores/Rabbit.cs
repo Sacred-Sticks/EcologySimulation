@@ -67,12 +67,9 @@ public class Rabbit : Herbivore
     private void CheckState()
     {
         var FoxSearch = SearchForItem(Target.Predator);
-        if (!FoxSearch) {
-            IdleBehavior();
-        }
-        else {
-            float distance = Vector3.Distance(transform.position, FoxSearch.transform.position);
-            SafetyProximity = 3;
+        if (foxSearch) 
+        {
+            float distance = Vector3.Distance(transform.position, foxSearch.transform.position);
             if(distance <= SafetyProximity) {
                 state = State.Running;
                 return;
@@ -126,7 +123,7 @@ public class Rabbit : Herbivore
      private void FoxSpotted(Target target)
     {
         var Fox = SearchForItem(target);
-        targetPosition = (Fox.transform.position - transform.position).normalized * 2;
+        targetPosition = (transform.position - Fox.transform.position).normalized * 3;
     }
 
     private void Movement()
