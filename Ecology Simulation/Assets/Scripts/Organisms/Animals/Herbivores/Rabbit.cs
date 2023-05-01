@@ -7,12 +7,14 @@ using Random = UnityEngine.Random;
 public class Rabbit : Herbivore
 {
     [SerializeField] private FloatReference idle;
+    [SerializeField] private float SafetyProximity;
 
     private enum State
     {
         Idle,
         Hungry,
         Thirsty,
+        Running,
         Horny,
     }
 
@@ -47,6 +49,9 @@ public class Rabbit : Herbivore
             case State.Horny:
                 SearchForTarget(Target.Mate);
                 break;
+            case State.Running:
+                FoxSpotted(Target.Predator);
+                break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(state), state, null);
         }  
@@ -61,6 +66,19 @@ public class Rabbit : Herbivore
 
     private void CheckState()
     {
+        var FoxSearch = SearchForItem(Target.Predator);
+        if (!FoxSearch) {
+            IdleBehavior();
+        }
+        else {
+            float distance = Vector3.Distance(transform.position, FoxSearch.transform.position);
+            SafetyProximity = 3;
+            if(distance <= SafetyProximity) {
+                state = State.Running;
+                return;
+            }
+        }
+    
         string nameMinValue = 
             (new[] 
         {
@@ -90,6 +108,7 @@ public class Rabbit : Herbivore
         float distance = Random.Range(1f, 5f);
         targetPosition = transform.position + (direction * distance);
     }
+   
 
     private void SearchForTarget(Target target)
     {
@@ -102,6 +121,12 @@ public class Rabbit : Herbivore
             return;
         }
         targetPosition = targetGameObject.transform.position;
+    }
+    
+     private void FoxSpotted(Target target)
+    {
+        var Fox = SearchForItem(target);
+        targetPosition = (Fox.transform.position - transform.position).normalized * 2;
     }
 
     private void Movement()
