@@ -66,7 +66,7 @@ public class Rabbit : Herbivore
 
     private void CheckState()
     {
-        var FoxSearch = SearchForItem(Target.Predator);
+        var foxSearch = SearchForItem(Target.Predator);
         if (foxSearch) 
         {
             float distance = Vector3.Distance(transform.position, foxSearch.transform.position);
