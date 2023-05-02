@@ -3,9 +3,9 @@ using UnityEngine;
 
 public class Organism : MonoBehaviour
 {
-    [SerializeField] private FloatReference sustenance;
-    [SerializeField] private FloatReference hydration;
-    [SerializeField] private FloatReference reproductionCooldown;
+    [SerializeField] protected FloatReference sustenance;
+    [SerializeField] protected FloatReference hydration;
+    [SerializeField] protected FloatReference reproductionCooldown;
     [SerializeField] protected EnumeratedObject species;
 
     protected float Sustenance
