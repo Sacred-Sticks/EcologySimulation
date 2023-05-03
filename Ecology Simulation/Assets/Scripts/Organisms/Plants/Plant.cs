@@ -1,51 +1,37 @@
+using System;
 using Essentials.References;
 using UnityEngine;
 
 public class Plant : Organism
 {
-    [SerializeField] protected FloatReference hydrationRange;
-    [SerializeField] protected FloatReference reproductionRange;
+    [SerializeField] private FloatReference hydrationRange;
+    [SerializeField] private FloatReference reproductionRange;
+    
     protected float HydrationRange { get; set; }
     protected float ReproductionRange { get; set; }
 
-    protected override void Awake()
+    public void SetStatistic(Statistic statistic)
     {
-        base.Awake();
-        HydrationRange = hydrationRange.Value;
-        ReproductionRange = reproductionRange.Value;
-    }
-
-    protected override void Update()
-    {
-        base.Update();
-
-        // Check hydration
-        if (Hydration <= 0)
+        switch (statistic.StatisticType)
         {
-            Destroy(gameObject);
-        }
-        else
-        {
-            Hydration -= Time.deltaTime;
-        }
-
-        // Check reproduction cooldown
-        if (ReproductionCooldown > 0)
-        {
-            ReproductionCooldown -= Time.deltaTime;
-        }
-    }
-
-    protected virtual void Reproduce()
-    {
-        if (ReproductionCooldown <= 0)
-        {
-            // Spawn a new game object nearby
-            Vector3 spawnPosition = transform.position + Random.insideUnitSphere * ReproductionRange;
-            Instantiate(gameObject, spawnPosition, Quaternion.identity);
-
-            // Reset reproduction cooldown
-            ReproductionCooldown = Random.Range(10f, 20f);
+            case Statistic.StatType.Sustenance:
+                if (Sustenance)
+                {
+                    Debug.LogWarning($"{nameof(Sustenance)} Already Set");
+                    break;
+                }
+                Sustenance = statistic;
+                break;
+            case Statistic.StatType.Hydration:
+                if (Hydration)
+                {
+                    Debug.LogWarning($"{nameof(Hydration)} Already Set");
+                    break;
+                }
+                Hydration = statistic;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(statistic), statistic, null);
         }
     }
 }
