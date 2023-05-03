@@ -3,25 +3,16 @@ using UnityEngine.UI;
 
 public class StatBar : MonoBehaviour
 {
-    [SerializeField] private float statTimer;
-    [SerializeField] private Image statBar;
 
-    private const int maxStatValue = 1;
+    [SerializeField] private Statistic statistic;
 
-    public void LowerStat(ref float organismStat, float multiplier)
+
+    
+    private void Update()
     {
-        organismStat -= multiplier * statTimer;
-        
-        if (organismStat <= 0)
-        {
-            Destroy(transform.parent);
-        }
-        
-        // Modify statBar data for visuals
-    }
+        transform.localScale = new Vector3(transform.localScale.x, statistic.Value, transform.localScale.z);
 
-    public float ResetStat()
-    {
-        return maxStatValue;
-    }
+    } 
+
+
 }
