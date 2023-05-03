@@ -7,16 +7,16 @@ public class SunflowerPlant : Plant
 {
     public FloatReference hydrationRange2;
     public FloatReference reproductionRange2;
-
     public float hydrationTimer;
-    public float reproductionTimer;
+    public float reproductionCooldown;
+    private float reproductionTimer;
 
     protected override void Awake()
     {
         base.Awake();
 
         hydrationTimer = hydrationRange2.Value;
-        reproductionTimer = reproductionRange2.Value;
+        reproductionTimer = 0f;
     }
 
     protected override void Update()
@@ -38,11 +38,11 @@ public class SunflowerPlant : Plant
         if (reproductionTimer <= 0)
         {
             // Spawn a new game object nearby
-            Vector3 spawnPosition = transform.position + Random.insideUnitSphere * (reproductionRange2.Value * 2f);
+            Vector3 spawnPosition = transform.position + Random.insideUnitSphere * reproductionRange2.Value;
             Instantiate(gameObject, spawnPosition, Quaternion.identity);
 
             // Reset reproduction timer
-            reproductionTimer = reproductionRange2.Value;
+            reproductionTimer = reproductionCooldown;
         }
         else
         {
