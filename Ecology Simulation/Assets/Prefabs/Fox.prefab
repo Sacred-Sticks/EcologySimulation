@@ -280,6 +280,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   speciesPrefab: {fileID: 9189435001140671645}
+  populationTracking: {fileID: 11400000, guid: a57b366b6ff9cae4eba26002756f4c8e, type: 2}
 --- !u!114 &9189435001140671619
 MonoBehaviour:
   m_ObjectHideFlags: 0

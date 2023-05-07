@@ -182,6 +182,7 @@ MonoBehaviour:
     useConstant: 1
     constantValue: 0.75
     variable: {fileID: 0}
+  SafetyProximity: 0
 --- !u!114 &5308992563879308225
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -280,6 +281,7 @@ MonoBehaviour:
             m_BoolArgument: 0
           m_CallState: 2
   speciesPrefab: {fileID: 3760627654147668382}
+  populationTracking: {fileID: 11400000, guid: 49eb1068cfdb4e24fa06673b59dfa876, type: 2}
 --- !u!114 &7334219909686219772
 MonoBehaviour:
   m_ObjectHideFlags: 0
