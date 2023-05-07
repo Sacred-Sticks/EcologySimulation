@@ -1,16 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Essentials.Events;
 using Essentials.References;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 
 [RequireComponent(typeof(Organism))]
 public class ResourceDetection : MonoBehaviour
 {
     [SerializeField] private ResourceData[] data;
     [SerializeField] private GameObject speciesPrefab;
-    
+    [SerializeField] private EventBus populationTracking;
+
     [Serializable]
     public class ResourceData
     {
@@ -79,6 +82,7 @@ public class ResourceDetection : MonoBehaviour
     {
         statistics = data.ToDictionary(d => d.Key, d => d.Statistic);
         statisticAdditiveValues = data.ToDictionary(d => d.Statistic, d => d.StatisticAdditiveValue);
+        populationTracking.Trigger(this, new PopulationChangeEventArgs(1));
     }
 
     private void Update()
@@ -124,8 +128,13 @@ public class ResourceDetection : MonoBehaviour
         if (targetManager.statistics == null)
             return;
         var targetStatistic = targetManager.statistics[Statistic.StatType.SexualSatisfaction];
-        targetManager.statistics[statistic.StatisticType].AddToStat(targetManager.statisticAdditiveValues[targetStatistic]);
+        targetStatistic.AddToStat(targetManager.statisticAdditiveValues[targetStatistic]);
         statistic.AddToStat(statisticAdditiveValues[statistic]);
         Instantiate(speciesPrefab, transform.position, transform.rotation);
+    }
+
+    private void OnDestroy()
+    {
+        populationTracking.Trigger(this, new PopulationChangeEventArgs(-1));
     }
 }

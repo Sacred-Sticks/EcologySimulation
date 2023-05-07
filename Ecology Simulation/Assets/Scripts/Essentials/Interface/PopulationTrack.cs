@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Essentials.Events;
 
@@ -13,7 +14,7 @@ public class PopulationTrack : MonoBehaviour
     private EventBus rabbitPopulationChange;
     [SerializeField]
     private EventBus carrotPopulationChange;
-    
+
     private PopulationTracker carrotTracker;
     private PopulationTracker rabbitTracker;
     private PopulationTracker foxTracker;
@@ -57,37 +58,27 @@ public class PopulationTrack : MonoBehaviour
             enabled = false;
             return;
         }
-
+        var trackers = new List<GameObject>();
         int yLevel = 20;
-        var newTracker = Instantiate(textPrefab, populationInterface.transform);
-        newTracker.transform.localPosition = new Vector3(0, yLevel, 0);
-        if (carrotTracker == null)
+        for (int i = 0; i < 3; i++)
         {
-            carrotTracker = new PopulationTracker("Carrots", newTracker)
-            {
-                Population = 0,
-            };
+            var tracker = Instantiate(textPrefab, populationInterface.transform);
+            tracker.transform.localPosition = new Vector3(0, yLevel, 0);
+            trackers.Add(tracker);
+            yLevel -= 40;
         }
-        yLevel -= 40;
-        newTracker = Instantiate(textPrefab, populationInterface.transform);
-        newTracker.transform.localPosition = new Vector3(0, yLevel, 0);
-        if (rabbitTracker == null)
+        carrotTracker = new PopulationTracker("Carrots", trackers[0])
         {
-            rabbitTracker = new PopulationTracker("Rabbits", newTracker)
-            {
-                Population = 0,
-            };
-        }
-        yLevel -= 40;
-        newTracker = Instantiate(textPrefab, populationInterface.transform);
-        newTracker.transform.localPosition = new Vector3(0, yLevel, 0);
-        if (foxTracker == null)
+            Population = 0,
+        };
+        rabbitTracker = new PopulationTracker("Rabbits", trackers[1])
         {
-            foxTracker = new PopulationTracker("Foxes", newTracker)
-            {
-                Population = 0,
-            };
-        }
+            Population = 0,
+        };
+        foxTracker = new PopulationTracker("Foxes", trackers[2])
+        {
+            Population = 0,
+        };
     }
 }
 

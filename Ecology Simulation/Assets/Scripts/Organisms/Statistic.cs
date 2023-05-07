@@ -1,4 +1,5 @@
 using System;
+using Essentials.Events;
 using UnityEngine;
 
 [RequireComponent(typeof(Organism))]
@@ -57,8 +58,9 @@ public class Statistic : MonoBehaviour
     {
         AddToStat(-(changePerSecond * Time.deltaTime));
 
-        if (Value <= 0)
-            Destroy(gameObject);
+        if (Value > 0)
+            return;
+        Destroy(gameObject);
     }
 
     public void AddToStat(float addition)
