@@ -6,6 +6,7 @@ using Essentials.References;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
+using Random = UnityEngine.Random;
 
 [RequireComponent(typeof(Organism))]
 public class ResourceDetection : MonoBehaviour
@@ -131,6 +132,25 @@ public class ResourceDetection : MonoBehaviour
         targetStatistic.AddToStat(targetManager.statisticAdditiveValues[targetStatistic]);
         statistic.AddToStat(statisticAdditiveValues[statistic]);
         Instantiate(speciesPrefab, transform.position, transform.rotation);
+    }
+
+    public void PlantReproduction(GameObject target, Statistic statistic)
+    {
+        if (statistic.Value > 0.5f)
+            return;
+        var targetManager = target.GetComponent<ResourceDetection>();
+        if (targetManager.statistics == null)
+            return;
+        float range = data[0].Range;
+        var results = new List<Collider2D>();
+        int size = Physics2D.OverlapCircle(transform.position, range, new ContactFilter2D(), results);
+        if (size > range + 1)
+            return;
+        var targetStatistic = targetManager.statistics[Statistic.StatType.SexualSatisfaction];
+        targetStatistic.AddToStat(targetManager.statisticAdditiveValues[targetStatistic]);
+        statistic.AddToStat(statisticAdditiveValues[statistic]);
+        var offset = Organism.GetRandomDirection() * Random.Range(range / 4, range / 2);
+        Instantiate(speciesPrefab, transform.position + offset, transform.rotation);
     }
 
     private void OnDestroy()

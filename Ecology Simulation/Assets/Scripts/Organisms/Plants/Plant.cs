@@ -9,6 +9,7 @@ public class Plant : Organism
     
     protected float HydrationRange { get; set; }
     protected float ReproductionRange { get; set; }
+    protected Statistic SexualSatisfaction { get; private set; }
 
     public void SetStatistic(Statistic statistic)
     {
@@ -29,6 +30,14 @@ public class Plant : Organism
                     break;
                 }
                 Hydration = statistic;
+                break;
+            case Statistic.StatType.SexualSatisfaction:
+                if (SexualSatisfaction)
+                {
+                    Debug.LogWarning($"{nameof(SexualSatisfaction)} Already Set");
+                    break;
+                }
+                SexualSatisfaction = statistic;
                 break;
             default:
                 throw new ArgumentOutOfRangeException(nameof(statistic), statistic, null);

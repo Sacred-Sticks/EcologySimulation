@@ -33,6 +33,15 @@ public class PopulationTrack : MonoBehaviour
     {
         if (e is not PopulationChangeEventArgs args)
             return;
+        if (carrotTracker == null)
+        {
+            var tracker = Instantiate(textPrefab, populationInterface.transform);
+            tracker.transform.localPosition = new Vector3(0, 20, 0);
+            carrotTracker = new PopulationTracker("Carrots", tracker)
+            {
+                Population = 0,
+            };
+        }
         carrotTracker.Population += args.PopulationChange;
     }
 
@@ -40,6 +49,15 @@ public class PopulationTrack : MonoBehaviour
     {
         if (e is not PopulationChangeEventArgs args)
             return;
+        if (rabbitTracker == null)
+        {
+            var tracker = Instantiate(textPrefab, populationInterface.transform);
+            tracker.transform.localPosition = new Vector3(0, -20, 0);
+            rabbitTracker = new PopulationTracker("Rabbits", tracker)
+            {
+                Population = 0,
+            };
+        }
         rabbitTracker.Population += args.PopulationChange;
     }
 
@@ -47,39 +65,48 @@ public class PopulationTrack : MonoBehaviour
     {
         if (e is not PopulationChangeEventArgs args)
             return;
+        if (foxTracker == null)
+        {
+            var tracker = Instantiate(textPrefab, populationInterface.transform);
+            tracker.transform.localPosition = new Vector3(0, -60, 0);
+            foxTracker = new PopulationTracker("Foxes", tracker)
+            {
+                Population = 0,
+            };
+        }
         foxTracker.Population += args.PopulationChange;
     }
 
-    void Start()
-    {
-        if (populationInterface == null)
-        {
-            Debug.LogWarning("Population tracker is not connected to any interface.");
-            enabled = false;
-            return;
-        }
-        var trackers = new List<GameObject>();
-        int yLevel = 20;
-        for (int i = 0; i < 3; i++)
-        {
-            var tracker = Instantiate(textPrefab, populationInterface.transform);
-            tracker.transform.localPosition = new Vector3(0, yLevel, 0);
-            trackers.Add(tracker);
-            yLevel -= 40;
-        }
-        carrotTracker = new PopulationTracker("Carrots", trackers[0])
-        {
-            Population = 0,
-        };
-        rabbitTracker = new PopulationTracker("Rabbits", trackers[1])
-        {
-            Population = 0,
-        };
-        foxTracker = new PopulationTracker("Foxes", trackers[2])
-        {
-            Population = 0,
-        };
-    }
+    // void Start()
+    // {
+    //     if (populationInterface == null)
+    //     {
+    //         Debug.LogWarning("Population tracker is not connected to any interface.");
+    //         enabled = false;
+    //         return;
+    //     }
+    //     var trackers = new List<GameObject>();
+    //     int yLevel = 20;
+    //     for (int i = 0; i < 3; i++)
+    //     {
+    //         var tracker = Instantiate(textPrefab, populationInterface.transform);
+    //         tracker.transform.localPosition = new Vector3(0, yLevel, 0);
+    //         trackers.Add(tracker);
+    //         yLevel -= 40;
+    //     }
+    //     carrotTracker = new PopulationTracker("Carrots", trackers[0])
+    //     {
+    //         Population = 0,
+    //     };
+    //     rabbitTracker = new PopulationTracker("Rabbits", trackers[1])
+    //     {
+    //         Population = 0,
+    //     };
+    //     foxTracker = new PopulationTracker("Foxes", trackers[2])
+    //     {
+    //         Population = 0,
+    //     };
+    // }
 }
 
 public class PopulationChangeEventArgs : EventArgs
