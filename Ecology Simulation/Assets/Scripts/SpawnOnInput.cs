@@ -12,6 +12,7 @@ public class SpawnOnInput : MonoBehaviour
     public IntVariable input; // Reference to the IntVariable object that stores the integer input
     public GameObject objectToSpawn; // The game object to spawn
     public Transform spawnPoint; // The spawn point for the game object
+    public float spawnRange = 2f; // The maximum distance from the spawn point to spawn the objects
 
     // Start is called before the first frame update
     void Start()
@@ -30,11 +31,12 @@ public class SpawnOnInput : MonoBehaviour
         // Spawn the specified number of game objects
         for (int i = 0; i < numObjectsToSpawn; i++)
         {
-            // Generate a random offset vector
-            Vector3 offset = new Vector3(Random.Range(-2f, 2f), Random.Range(0f, 2f), Random.Range(-2f, 2f));
+            // Generate a random offset vector within the specified range
+            Vector3 offset = new Vector3(Random.Range(-spawnRange, spawnRange), Random.Range(-spawnRange, spawnRange), Random.Range(-spawnRange, spawnRange));
 
-            // Instantiate the object at the spawn point with the random offset
-            Instantiate(objectToSpawn, spawnPoint.position + offset, Quaternion.identity);
+            // Instantiate the object at a random position close to the spawn point
+            Vector3 randomSpawnPos = spawnPoint.position + offset;
+            Instantiate(objectToSpawn, randomSpawnPos, Quaternion.identity);
         }
     }
 }
