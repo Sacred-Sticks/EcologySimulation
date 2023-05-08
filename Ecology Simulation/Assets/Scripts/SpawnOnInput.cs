@@ -1,42 +1,36 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
-using Essentials.Variables;
+using Random = UnityEngine.Random;
 
+[RequireComponent(typeof(TMP_InputField))]
 public class SpawnOnInput : MonoBehaviour
 {
-    public Button btnClick; // Reference to the button component that triggers the input retrieval and game object spawning
-    public TMP_InputField inputUser; // Reference to the TextMeshPro input field
-    public IntVariable input; // Reference to the IntVariable object that stores the integer input
-    public GameObject objectToSpawn; // The game object to spawn
-    public Transform spawnPoint; // The spawn point for the game object
-    public float spawnRange = 2f; // The maximum distance from the spawn point to spawn the objects
+    [SerializeField] private GameObject objectToSpawn; // The game object to spawn
+    [SerializeField] private Transform spawnPoint; // The spawn point for the game object
+    [SerializeField] private float spawnRange = 2f; // The maximum distance from the spawn point to spawn the objects
+    
+    private TMP_InputField inputUser; // Reference to the TextMeshPro input field
 
-    // Start is called before the first frame update
-    void Start()
+    private void Awake()
     {
-        // Add a listener to the button component for click events
-        btnClick.onClick.AddListener(SpawnObjectsOnInput);
+        inputUser = GetComponent<TMP_InputField>();
     }
 
-    // Handler method for the button click event
     public void SpawnObjectsOnInput()
     {
         // Attempt to parse the integer input from the TextMeshPro input field
-        int numObjectsToSpawn;
-        int.TryParse(inputUser.text, out numObjectsToSpawn);
+        int.TryParse(inputUser.text, out int numObjectsToSpawn);
 
         // Spawn the specified number of game objects
         for (int i = 0; i < numObjectsToSpawn; i++)
         {
             // Generate a random offset vector within the specified range
-            Vector3 offset = new Vector3(Random.Range(-spawnRange, spawnRange), Random.Range(-spawnRange, spawnRange), Random.Range(-spawnRange, spawnRange));
+            var offset = new Vector3(Random.Range(-1, 1f), Random.Range(-1, 1f), 0).normalized * Random.Range(0, spawnRange);
 
             // Instantiate the object at a random position close to the spawn point
-            Vector3 randomSpawnPos = spawnPoint.position + offset;
+            var randomSpawnPos = spawnPoint.position + offset;
             Instantiate(objectToSpawn, randomSpawnPos, Quaternion.identity);
+            //gameObject.SetActive(false);
         }
     }
 }

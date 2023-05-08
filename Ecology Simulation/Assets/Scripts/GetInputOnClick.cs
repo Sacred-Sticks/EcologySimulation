@@ -1,31 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
 using Essentials.Variables;
+
+[RequireComponent(typeof(TMP_InputField))]
 public class GetInputOnClick : MonoBehaviour
 {
-    public Button btnClick;
-    public TMP_InputField inputUser;
+    private TMP_InputField inputUser;
     public IntVariable input;
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
-        btnClick.onClick.AddListener(GetInputOnClickHandler);
+        inputUser = GetComponent<TMP_InputField>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public void GetInputOnClickHandler()
     {
-        int tmp;
-        int.TryParse(inputUser.text, out tmp);
+        int.TryParse(inputUser.text, out int tmp);
         input.Value = tmp;
-        Debug.Log(input.Value);
     }
-
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4907612785751187622}
   - component: {fileID: 4907612785751187623}
+  - component: {fileID: 1906353690}
   m_Layer: 0
   m_Name: Terrain Edges
   m_TagString: Untagged
@@ -72,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: e935bd2627327f4479353dc0fce50138, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -84,3 +85,31 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!68 &1906353690
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4907612785751187620}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -80, y: 140}
+  - {x: 80, y: 140}
+  - {x: 140, y: 80}
+  - {x: 140, y: -80}
+  - {x: 80, y: -140}
+  - {x: -80, y: -140}
+  - {x: -140, y: -80}
+  - {x: -140, y: 80}
+  m_AdjacentStartPoint: {x: -140, y: 80}
+  m_AdjacentEndPoint: {x: -80, y: 140}
+  m_UseAdjacentStartPoint: 1
+  m_UseAdjacentEndPoint: 1
