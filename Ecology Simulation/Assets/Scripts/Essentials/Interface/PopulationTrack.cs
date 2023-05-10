@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using Essentials.Events;
+using Essentials.Variables;
+using UnityEngine.Serialization;
 
 public class PopulationTrack : MonoBehaviour
 {
@@ -14,6 +16,13 @@ public class PopulationTrack : MonoBehaviour
     private EventBus rabbitPopulationChange;
     [SerializeField]
     private EventBus carrotPopulationChange;
+
+    [SerializeField]
+    private IntVariable foxPopulationVariable;
+    [SerializeField]
+    private IntVariable rabbitPopulationVariable;
+    [SerializeField]
+    private IntVariable plantPopulationVariable;
 
     private PopulationTracker carrotTracker;
     private PopulationTracker rabbitTracker;
@@ -42,7 +51,11 @@ public class PopulationTrack : MonoBehaviour
                 Population = 0,
             };
         }
-        carrotTracker.Population += args.PopulationChange;
+        int newPopulation = plantPopulationVariable.Value + args.PopulationChange;
+        if (newPopulation < 0)
+            newPopulation = 0;
+        carrotTracker.Population = newPopulation;
+        plantPopulationVariable.Value = newPopulation;
     }
 
     private void OnRabbitPopulationChange(object sender, EventArgs e)
@@ -58,7 +71,11 @@ public class PopulationTrack : MonoBehaviour
                 Population = 0,
             };
         }
-        rabbitTracker.Population += args.PopulationChange;
+        int newPopulation = rabbitPopulationVariable.Value + args.PopulationChange;
+        if (newPopulation < 0)
+            newPopulation = 0;
+        rabbitTracker.Population = newPopulation;
+        rabbitPopulationVariable.Value = newPopulation;
     }
 
     private void OnFoxPopulationChange(object sender, EventArgs e)
@@ -74,39 +91,12 @@ public class PopulationTrack : MonoBehaviour
                 Population = 0,
             };
         }
-        foxTracker.Population += args.PopulationChange;
+        int newPopulation =foxPopulationVariable.Value + args.PopulationChange;
+        if (newPopulation < 0) 
+            newPopulation = 0;
+        foxTracker.Population = newPopulation;
+        foxPopulationVariable.Value = newPopulation;
     }
-
-    // void Start()
-    // {
-    //     if (populationInterface == null)
-    //     {
-    //         Debug.LogWarning("Population tracker is not connected to any interface.");
-    //         enabled = false;
-    //         return;
-    //     }
-    //     var trackers = new List<GameObject>();
-    //     int yLevel = 20;
-    //     for (int i = 0; i < 3; i++)
-    //     {
-    //         var tracker = Instantiate(textPrefab, populationInterface.transform);
-    //         tracker.transform.localPosition = new Vector3(0, yLevel, 0);
-    //         trackers.Add(tracker);
-    //         yLevel -= 40;
-    //     }
-    //     carrotTracker = new PopulationTracker("Carrots", trackers[0])
-    //     {
-    //         Population = 0,
-    //     };
-    //     rabbitTracker = new PopulationTracker("Rabbits", trackers[1])
-    //     {
-    //         Population = 0,
-    //     };
-    //     foxTracker = new PopulationTracker("Foxes", trackers[2])
-    //     {
-    //         Population = 0,
-    //     };
-    // }
 }
 
 public class PopulationChangeEventArgs : EventArgs

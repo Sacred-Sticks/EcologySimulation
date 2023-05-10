@@ -21,7 +21,7 @@ public class Rabbit : Herbivore
     private State state;
     private Move mover;
     private Vector3 targetPosition;
-    private const float TOLERANCE = 0.1f;
+    private const float TOLERANCE = 1f;
     private void Awake()
     {
         mover = GetComponent<Move>();

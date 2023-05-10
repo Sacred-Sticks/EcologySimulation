@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &968962445777352758
+--- !u!1001 &1985732692739157417
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -9,15 +9,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1870150068704143212, guid: 94777c2754b130a4c8a5e809a8d327fb, type: 3}
       propertyPath: m_Color.b
-      value: 0
+      value: 0.57345575
       objectReference: {fileID: 0}
     - target: {fileID: 1870150068704143212, guid: 94777c2754b130a4c8a5e809a8d327fb, type: 3}
       propertyPath: m_Color.g
-      value: 0.56566
+      value: 0.14833269
       objectReference: {fileID: 0}
     - target: {fileID: 1870150068704143212, guid: 94777c2754b130a4c8a5e809a8d327fb, type: 3}
       propertyPath: m_Color.r
-      value: 0.9811321
+      value: 0.9433962
       objectReference: {fileID: 0}
     - target: {fileID: 1870150068704143212, guid: 94777c2754b130a4c8a5e809a8d327fb, type: 3}
       propertyPath: m_SortingOrder
@@ -33,7 +33,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1870150069385112954, guid: 94777c2754b130a4c8a5e809a8d327fb, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.66
+      value: -0.39
       objectReference: {fileID: 0}
     - target: {fileID: 1870150069385112954, guid: 94777c2754b130a4c8a5e809a8d327fb, type: 3}
       propertyPath: m_LocalPosition.y
@@ -73,7 +73,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1870150069385112955, guid: 94777c2754b130a4c8a5e809a8d327fb, type: 3}
       propertyPath: m_Name
-      value: HungerStatBar
+      value: SexualSatisfactionStatBar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 94777c2754b130a4c8a5e809a8d327fb, type: 3}
