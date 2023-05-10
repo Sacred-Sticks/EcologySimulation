@@ -22,7 +22,7 @@ public class Fox : Carnivore
 
     private Move mover;
     private Vector3 targetPosition;
-    private const float TOLERANCE = 0.25f;
+    private const float TOLERANCE = 1f;
 
     private void Awake()
     {

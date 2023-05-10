@@ -14,6 +14,7 @@ public class ResourceDetection : MonoBehaviour
     [SerializeField] private ResourceData[] data;
     [SerializeField] private GameObject speciesPrefab;
     [SerializeField] private EventBus populationTracking;
+    [SerializeField] private float reproductionDesireRequirement = 0.75f;
 
     [Serializable]
     public class ResourceData
@@ -123,7 +124,7 @@ public class ResourceDetection : MonoBehaviour
 
     public void Mate(GameObject target, Statistic statistic)
     {
-        if (statistic.Value > 0.75f)
+        if (statistic.Value > reproductionDesireRequirement)
             return;
         var targetManager = target.GetComponent<ResourceDetection>();
         if (targetManager.statistics == null)

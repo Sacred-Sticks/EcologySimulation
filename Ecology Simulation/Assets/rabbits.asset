@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b91d5e4ff2c6d1a4b8be91dfeed52662, type: 3}
   m_Name: rabbits
   m_EditorClassIdentifier: 
-  value: 0
-  resetValue: 0
+  value: -2
+  resetValue: 1
   initialValue: 0
